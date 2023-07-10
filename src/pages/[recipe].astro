@@ -1,0 +1,25 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Section from "@layouts/Section.astro";
+
+import { recipes } from '@data/recipes'
+
+const { recipe } = Astro.params
+
+const info = recipes.find(r => r.id === recipe)
+
+if (!info) {
+  new Response(null, {
+    status: 404,
+    statusText: 'Not found'
+  })
+
+  return Astro.redirect('/404') 
+}
+---
+
+<Layout title={`Recipe - ${info.title}`}>
+  <Section>
+    <h1>{info.title}</h1>
+  </Section>
+</Layout>
