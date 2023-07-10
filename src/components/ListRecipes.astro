@@ -1,0 +1,23 @@
+---
+import RecipeItem from '@components/RecipeItem.astro';
+
+import { recipes } from '@data/recipes'
+---
+
+<ul class="list-recipes grid gap-x-4 gap-y-6">
+  {
+    recipes.map(({id, title, image}) => {
+      return (
+        <li>
+          <RecipeItem id={id} title={title} image={image} />
+        </li>
+      )
+    })
+  }
+</ul>
+
+<style>
+	.list-recipes {
+		grid-template-columns: repeat(auto-fit, minmax(200px, 320px));
+	}
+</style>
